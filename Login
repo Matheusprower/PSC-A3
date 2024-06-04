@@ -1,0 +1,48 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Login {
+
+    public void login() {
+        Scanner sc = new Scanner(System.in);
+        int rst = 0;
+        String[] check = new String[2];
+        ArrayList<String> login = new ArrayList<>();
+        ArrayList<String> senha = new ArrayList<>();
+
+        while (rst == 0) {
+            
+            System.out.println("-1 Cria conta");
+            System.out.println("Login:");
+            check[0] = sc.nextLine();
+            if (check[0].equals("-1")) {
+                System.out.println("Criação de conta:");
+                System.out.print("Novo login: ");
+                login.add(sc.nextLine());
+                System.out.print("Nova senha: ");
+                senha.add(sc.nextLine());
+                System.out.println("Conta criada com sucesso!");
+                continue;
+            }
+
+            System.out.println("Senha:");
+            check[1] = sc.nextLine();
+
+            boolean logado = false;
+            for (int i = 0; i < login.size(); i++) {
+                if (login.get(i).equals(check[0]) && senha.get(i).equals(check[1])) {
+                    System.out.println("LOGADO");
+                    logado = true;
+                    rst = 1;
+                    break;
+                }
+            }
+
+            if (!logado) {
+                System.out.println("Login ou senha incorretos. Tente novamente.");
+            }
+        }
+
+        sc.close();
+    }
+}
